@@ -1,0 +1,157 @@
+
+{% block content %}
+<style>
+    .login{
+    background-image: url(https://www.careersinaudit.com/getasset/457e0344-1ee9-438b-895b-41c5fc822227/);
+    background-size: cover;
+	height: 120vh;
+	position: relative;
+  
+    }
+
+    .login:after{
+    content: '';
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,.5);
+    z-index: 1;
+    }
+
+    .content-section{
+    position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	display: flex;
+	flex-direction: column;
+	width: 400px;
+	z-index: 2;
+        
+    }
+    .horizontal-group .left .form-control{
+    float: left;
+    width: 49%;
+    }
+    .horizontal-group .right .form-control {
+    float: right;
+    width: 49%;
+    }
+
+    .content-section .form-group legend{
+       color:white;
+    }
+    .content-section .form-group label{
+       color:white;
+    }
+    .content-section .form-group .form-control {
+    height: 40px;
+    margin-bottom: 20px;
+    border:1px solid #ffffff;
+    width: 100%;
+    background-color: transparent;
+    border-radius: 20px;
+    text-align: center;
+    color:#ffffff;
+    transition:box-shadow .5s ease;
+    }
+
+</style>
+
+<meta charset="utf-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+         <title>AuditBench : Planning </title>
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<body>
+<section class="login">
+    <div class="content-section">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Join Today</legend>
+               
+                <div class="form-group">
+                    {{ form.firstName.label(class="form-control-label") }}
+                    {{ form.firstName(class="form-control form-control-lg") }}
+                </div>
+                <div class="form-group">
+                    {{ form.lastName.label(class="form-control-label") }}
+                    {{ form.lastName(class="form-control form-control-lg") }}
+                </div>
+            
+                <div class="form-group">
+                    {{ form.username.label(class="form-control-label") }}
+
+                    {% if form.username.errors %}
+                        {{ form.username(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.username.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.username(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group" >
+                    {{ form.position.label(class="form-control-label") }}
+                    {{ form.position(class="form-control form-control-lg") }}
+                </div>
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.password.label(class="form-control-label") }}
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.confirm_password.label(class="form-control-label") }}
+                    {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.confirm_password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.confirm_password(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+            <div class="border-top pt-3"></div>
+                <small  class="text" style="color: white;">
+                    Already Have An Account? <a class="ml-2" href="{{ url_for('login') }}">Sign In</a>
+                </small>
+            </div>
+        </form>
+    </div>
+    
+</section>
+</body>
+
+{% endblock content %}

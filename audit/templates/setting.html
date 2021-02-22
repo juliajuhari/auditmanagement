@@ -1,0 +1,116 @@
+
+{% block content %}
+<style>
+    .content-section{
+        margin: 100px;
+        margin-top: 20px;
+       
+    }
+    
+    .button{
+      background-color: #ce180b; /* Green */
+      border: none;
+      border-radius: 50px;
+      color: white;
+      padding: 12px 24px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-left: 100%;
+      margin-top: -30px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+    }
+    
+    .button1:hover {
+      background-color: white;
+      color:#ce180b;
+      border: 1px solid #ce180b;
+    }
+    
+    *
+    {
+      box-sizing: border-box;
+    }
+    
+    input[type=text], select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+    }
+    
+        </style>
+</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+<div class="content-section">
+    <h3> User Profile <button onclick="goBack()" id="btn_cancel" class="button button1 "><i class="fas fa-times"></i></button>
+        <script>
+          function goBack() {
+          window.history.back();
+          }
+        </script>
+        </h3> 
+        <br>
+  <div class="media">
+   
+    <img class="rounded-circle account-img" src="{{imageFile}}" width="100px" height="100px">
+    <div class="media-body">
+      <h2 class="account-heading">{{current_user.username}}</h2>
+      <p class="text-secondary">{{current_user.email}}</p>
+<br>
+    </div>
+  </div>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Account Info</legend>
+            <div class="form-group">
+                {{ form.username.label(class="form-control-label") }}
+
+                {% if form.username.errors %}
+                    {{ form.username(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.username.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.username(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.email.label(class="form-control-label") }}
+                {% if form.email.errors %}
+                    {{ form.email(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.email(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.picture.label() }}
+                {{ form.picture(class="form-control-file") }}
+                {% if form.picture.errors %}
+                    {% for error in form.picture.errors %}
+                        <span class="text-danger">{{ error }}</span></br>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}

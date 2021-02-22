@@ -1,0 +1,181 @@
+{% extends 'sidebar.html'%}
+{% block content %}
+ 
+<style>
+  .container{
+    font-family: sans-serif; /* Change your font family */
+    margin: 80px;
+  } 
+  h3{
+    font-size: 30px;
+  }
+  .button{
+  background-color: #ce180b; /* Green */
+  border: none;
+  border-radius: 50px;
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 90%;
+  margin-top: -30px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1:hover {
+  background-color: white;
+  color:#ce180b;
+  border: 1px solid #ce180b;
+}
+
+.content-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.8em;
+  min-width: 400px;
+  width: 100%;
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+#thead {
+  background-color: #303335;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+
+}
+.content-table th,
+.content-table td {
+  padding: 12px 15px;
+}
+
+.content-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+</style>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <div class="container">
+            <div class="row">
+                <div class="col md-12">
+                    
+                  <h3>Risk <b>Prioritization 
+                    </h3> 
+             
+                    <div style="overflow-x:auto;">
+                            <table id="risk" class="content-table" >
+             
+                                <tr id="thead">
+             
+                                    <th >Low</th>
+                                    <th >Medium</th>
+                                    <th >High</th>
+                                    
+                                </tr>
+
+                                <tr>
+                                    
+                                    <td style="background-color: #F8D82F;font-size:20px"><span id="num4"></span></td>
+                                    <td style="background-color: #F89C2F;font-size:20px"><span id="num7"></span></td>
+                                    <td style="background-color: #f45d5d;font-size:20px"><span id="num9"></span></td>
+                                    
+                                </tr>
+
+                                <tr>
+                                    
+                                    <td style="background-color: #09BB46;font-size:20px"><span id="num3"></span></td>
+                                    <td style="background-color: #F8D82F;font-size:20px"><span id="num6"></span></td>
+                                    <td style="background-color: #F89C2F;font-size:20px"><span id="num8"></span></td>
+                                    
+                                </tr>
+
+                                <tr>
+                                    
+                                    <td style="background-color: #09BB46;font-size:20px"><span id="num1"></span></td>
+                                    <td style="background-color: #09BB46;font-size:20px"><span id="num2"></span></td>
+                                    <td style="background-color: #F8D82F;font-size:20px"><span id="num5"></span></td>
+                                    
+                                </tr>
+  
+             </div>
+             </div>
+             </div>
+             </div>
+            </table>
+          
+ 
+ <script>
+        riskName=[];
+        riskRating=[];
+        count=0;
+        k=0;
+        let num1=document.getElementById('num1');
+        let num2=document.getElementById('num2');
+        let num3=document.getElementById('num3');
+        let num4=document.getElementById('num4');
+        let num5=document.getElementById('num5');
+        let num6=document.getElementById('num6');
+        let num7=document.getElementById('num7');
+        let num8=document.getElementById('num8');
+        let num9=document.getElementById('num9');
+
+
+        fetch('http://localhost:5000/risk_prioritization/data')
+          .then(function(resp){
+            return resp.json();
+          })
+          .then(function(risk){
+           
+            for( let i=0;i<risk.length;i=i+2){
+              riskName[i]=risk[i];
+            }
+            for(let i=1;i<risk.length;i=i+2)
+              riskRating[i]=risk[i];
+            
+            for(let i=0;i<riskRating.length;i++){
+              k=i;
+              if(riskRating[i]=="1"){
+                num1.innerHTML =riskName[k=k-1]
+              }
+              if(riskRating[i]=="2"){
+                num2.innerHTML =riskName[k=k-1]
+              }
+              if(riskRating[i]=="3"){
+                num3.innerHTML =riskName[k=k-1]
+              }
+              if(riskRating[i]=="4"){
+                num4.innerHTML =riskName[k=k-1]
+              }
+              if(riskRating[i]=="5"){
+                num5.innerHTML =riskName[k=k-1]
+              }
+              if(riskRating[i]=="6"){
+                num6.innerHTML =riskName[k=k-1]
+              }
+              if(riskRating[i]=="7"){
+                num7.innerHTML =riskName[k=k-1]
+              }
+              if(riskRating[i]=="8"){
+                num8.innerHTML =riskName[k=k-1]
+              }
+              if(riskRating[i]=="9"){
+                num9.innerHTML =riskName[k=k-1]
+              }         
+            }
+          });
+            
+
+        
+ </script>
+       
+ {% endblock content %}
+  
+ 
+                   
+                   

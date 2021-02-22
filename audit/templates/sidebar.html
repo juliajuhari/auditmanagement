@@ -1,0 +1,397 @@
+
+<style>
+  * {
+   margin: 0;
+   padding: 0;
+   list-style: none;
+   text-decoration: none;
+   box-sizing: border-box;
+   font-family: "Roboto", sans-serif;
+ }
+ 
+ body{
+   background: #F6F6F6;
+ }
+ 
+ .wrapper .header{
+   z-index: 1;
+   background: #fff;
+   position: fixed;
+   margin-top: 20px;   
+   width: calc(100% - 0%);
+   height: 70px;
+   display: flex;
+   top: 0;
+ }
+ 
+ .wrapper .header .header-menu{
+   width: calc(100% - 15%);
+   height: 100%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0 20px;
+ }
+
+ .wrapper .header .header-menu .title {
+   color: #fff;
+   font-size: 25px;
+   text-transform: uppercase;
+   font-weight: 900;
+   margin-left: 30px;
+ }
+ 
+ .wrapper .header .header-menu .title span{
+   color: #4CCEE8;
+ }
+ 
+ .wrapper .header .header-menu .sidebar-btn{
+   background-color: #3498DB;
+   color: #fff;
+   position: absolute;
+   margin-left: 3px;
+   font-size: 22px;
+   font-weight: 900;
+   cursor: pointer;
+   transition: 0.3s;
+   transition-property: color;
+ }
+ 
+ .wrapper .header .header-menu .sidebar-btn:hover{
+   background-color:#4ccEE8;
+   color: #fff;
+ }
+ 
+ .wrapper .header .header-menu ul{
+   display: flex;
+ }
+ 
+ .wrapper .header .header-menu ul li a{
+   background: #fff;
+   color: #3498DB;
+   margin: 0 18px;
+   font-size: 20px;
+   width: 34px;
+   height: 34px;
+   line-height: 35px;
+   text-align: center;
+   transition: 0.3s;
+   transition-property: background, color;
+ }
+ 
+ .wrapper .header .header-menu ul li a:hover{
+   color: #4CCEE8;
+ }
+ 
+ .wrapper .sidebar{
+   z-index: 1;
+   background:#151616;
+   position: fixed;
+   top: 70px;
+   width: 250px;
+   height: calc(100% - 9%);
+   transition: 0.3s;
+   transition-property: width;
+   overflow-y: auto;
+ }
+ 
+ .wrapper .sidebar .sidebar-menu{
+   overflow: hidden;
+ }
+ 
+ 
+ .wrapper .sidebar .sidebar-menu .item{
+   width: 250px;
+   overflow: hidden;
+ }
+ 
+ .wrapper .sidebar .sidebar-menu .item .menu-btn{
+   display: block;
+   color: rgb(204, 204, 204);
+   position: relative;
+   padding: 25px 20px;
+   transition: 0.3s;
+   transition-property: color;
+ }
+ /*dropdown sidebar*/
+ .wrapper .sidebar .sidebar-menu .item .menu-btn:hover{
+   display: block;
+   background-color:#1c334e;
+   color: #ffffff;
+ }
+ 
+ .wrapper .sidebar .sidebar-menu .item .menu-btn i{
+   margin-right: 20px;
+ }
+ 
+ .wrapper .sidebar .sidebar-menu .item .menu-btn .drop-down{
+   float: right;
+   font-size: 12px;
+   margin-top: 3px;
+ }
+ 
+ .wrapper .sidebar .sidebar-menu .item .sub-menu{
+   background: #eee;
+   overflow: hidden;
+   max-height: 0;
+   transition: 0.3s;
+   transition-property: background, max-height;
+ }
+ 
+ .wrapper .sidebar .sidebar-menu .item .sub-menu a{
+   display: block;
+   position: relative;
+   color: #1c334e;
+   white-space: nowrap;
+   font-size: 15px;
+   padding: 20px;
+   transition: 0.3s;
+   transition-property: background;
+ }
+ 
+ .wrapper .sidebar .sidebar-menu .item .sub-menu a:hover{
+   background: #1c334e;
+   color: #fff;
+ }
+ 
+ .wrapper .sidebar .sidebar-menu .item .sub-menu a:not(last-child){
+   border-bottom: 1px solid #ddd;
+ }
+ 
+ .wrapper .sidebar .sidebar-menu .item .sub-menu i{
+   padding-right: 20px;
+   font-size: 10px;
+ }
+ 
+ .wrapper .sidebar .sidebar-menu .item:target .sub-menu{
+   max-height: 500px;
+ }
+ 
+ /* background image*/ 
+ 
+ .wrapper.collapse .sidebar{
+   width: 70px;
+ }
+ 
+ .wrapper.collapse .sidebar a span{
+   display: none;
+ }
+ 
+ .wrapper.collapse .sidebar .sidebar-menu .item .menu-btn{
+   font-size: 23px;
+ }
+ 
+ .wrapper.collapse .sidebar .sidebar-menu .item .sub-menu i{
+   font-size: 18px;
+   padding-left: 3px;
+ }
+ 
+ .wrapper.collapse .main-container{
+   width: calc(100% - 70px);
+   margin-left: 70px;
+ }
+ 
+ .wrapper .main-container .card{
+   background: #fff;
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+   padding: 15px;
+   margin-bottom: 10px;
+   height: fit-content;
+ }
+ 
+ /*right side dropdown*/
+ 
+ .dropdown-content {
+   display: none;
+   position: absolute;
+   background-color: #eee;
+   min-width: 160px;
+   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+   z-index: 1;
+ }
+ 
+ .dropdown-content a {
+   color: #1c334e;
+   padding: 12px 16px;
+   text-decoration: none;
+   display: block;
+ }
+ 
+ .dropdown-content a:hover {background-color:#1c334e; color: #fff;}
+ 
+ .dropdown:hover .dropdown-content {display: block;}
+ 
+ /* scroll bar */
+ /* width */
+ ::-webkit-scrollbar {
+   width: 10px;
+ }
+ 
+ /* Track */
+ ::-webkit-scrollbar-track {
+   background: #f1f1f1; 
+ }
+  
+ /* Handle */
+ ::-webkit-scrollbar-thumb {
+   background: rgb(201, 200, 200); 
+ }
+ 
+ /* Handle on hover */
+ ::-webkit-scrollbar-thumb:hover {
+   background: #888; 
+ }
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AuditBench : Planning </title>
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+         
+          <!-- ===== CSS ===== -->
+        <link rel="stylesheet" href="static/styles.css">
+
+        <title>Sidebar sub menus</title>
+    </head>
+    <body id="body-pd">
+    <!--wrapper start-->
+    <div class="wrapper">
+        <!--header menu start-->
+        <div class="header">
+            <div class="header-menu">
+                <div class="title">
+                   <a href="{{ url_for('dashboard') }}"><img src="/static/logo.png" title = "AuditBench Home" width="150px" height="150px"></a>
+                </div>
+                <ul>  
+                   <li><a href="{{ url_for('setting') }}" class="profile" title="Profile"><i class="fas fa-user"></i></a>{{current_user.username}}</li>
+                 
+                      <!--<div class="dropdown" id="item">
+                        <div class="dropbtn">
+                        <li><a href="#"><i class="fas fa-chevron-down"></i></a></li>
+                        <div class="dropdown-content" >
+                          <a href="{{ url_for('setting') }}" title="Profile"><i class="fas fa-user"></i> {{current_user.username}}</a>
+                          <a href="{{ url_for('logout') }}" title="Sign out"><i class="fas fa-sign-out-alt"></i> Sign out</a>
+                        </div>
+                      </div>
+                      </div>--> 
+                </ul>
+            </div>
+        </div>
+       <!--header menu end-->
+       
+        <!-- sidebar start-->
+        <div class="l-navbar" id="navbar">
+            <nav class="nav">
+                <div>
+                    <div class="nav__brand">
+                        <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
+                        <a href="{{ url_for('dashboard') }}" class="nav__logo" title="Audit Bench Home">Audit Bench</a>
+                       
+                    </div>
+
+                    <div class="nav__list">
+                        <a href="{{ url_for('dashboard') }}" class="nav__link active">
+                            <ion-icon name="home-outline" class="nav__icon" title="Home"></ion-icon>
+                            <span class="nav__name" title="Home">Home</span>
+                        </a>
+
+                        <a href="{{ url_for('document_list') }}" class="nav__link">
+                            <ion-icon name="logo-dropbox" class="nav__icon" title="Uploads"></ion-icon>
+                            <span class="nav__name" title="Uploads">Uploads</span>
+                        </a>
+                        <a href="{{ url_for('auditplan_list') }}" class="nav__link">
+                          <ion-icon name="list" class="nav__icon" title="Audit Plans"></ion-icon>
+                          <span class="nav__name" title="Audit Plans">Audit Plans</span>
+                        </a>
+
+                        <a href="{{ url_for('auditprogram_list') }}" class="nav__link">
+                          <ion-icon name="laptop-outline" class="nav__icon" title="Audit Program"></ion-icon>
+                          <span class="nav__name" title="Audit Program">Audit Program</span>
+                        </a>
+
+                        <div  class="nav__link collapse">
+                          <ion-icon name="document" class="nav__icon" title="Audits"></ion-icon>
+                          <span class="nav__name" title="Audits">Audits</span>
+
+                          <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                          <ul class="collapse__menu">
+                              <a href="{{ url_for('audit_list') }}" class="collapse__sublink" title="Audit Report">Audit List</a>
+                              <a href="{{ url_for('auditproject_list') }}" class="collapse__sublink" title="My Audits">My Audits</a>
+                          </ul>
+                      </div>
+                      </a>
+
+                        <div class="nav__link collapse">
+                            <ion-icon name="people-outline" class="nav__icon" title="Audit Universe"></ion-icon>
+                            <span class="nav__name" title="Audit Universe">Audit Universe</span>
+
+                            <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                            <ul class="collapse__menu">
+                                <a href="{{ url_for('entity_list') }}" class="collapse__sublink" title="Entity Management">Entity Management</a>
+                                <a href="{{ url_for('risk_list') }}" class="collapse__sublink" title="Risk Assessment Detail">Risk Assessment Detail</a>
+                                <a href="{{ url_for('risk_prioritization') }}" class="collapse__sublink" title="Risk Prioritization">Risk Prioritization</a>
+                            </ul>
+                        </div>
+
+                        <div  class="nav__link collapse">
+                            <ion-icon name="briefcase-outline" class="nav__icon" title="Audit Resources"></ion-icon>
+                            <span class="nav__name" title="Audit Resources">Audit Resources</span>
+
+                            <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                            <ul class="collapse__menu">
+                                <a href="{{ url_for('resources_list') }}" class="collapse__sublink" title="Asset Identification">Asset Identification</a>
+                            </ul>
+                        </div>
+                        </a>
+
+                        <a href="{{ url_for('calendar')}}" class="nav__link">
+                            <ion-icon name="calendar-outline" class="nav__icon" title="Calendar Events"></ion-icon>
+                            <span class="nav__name" title="Calendar Events">Calendar Events</span>
+                        </a>
+
+                        <div  class="nav__link collapse">
+                            <ion-icon name="settings-outline" class="nav__icon" title="Settings"></ion-icon>
+                            <span class="nav__name" title="Settings">Settings</span>
+
+                            <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                            <ul class="collapse__menu">
+                                <a href="{{ url_for('setting') }}" class="collapse__sublink" title="Profile">Profile</a>
+                                <a href="{{ url_for('logout') }}" class="collapse__sublink" title="Sign Out">Sign out</a>
+                            </ul>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <!-- ===== IONICONS ===== -->
+        <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+        
+        <!-- ===== MAIN JS ===== -->
+        <script src="static/main.js"></script>
+
+        <!-- sidebar end-->
+        <!--main container start-->
+           
+        <div class="main-container"></div>
+          <div class="card">
+            
+            {% block content %}
+            {% endblock content %}
+          </div> 
+      </div>
+      <!--main container end-->
+  </div>
+  <!--wrapper end-->
+
+    </body>
+</html>

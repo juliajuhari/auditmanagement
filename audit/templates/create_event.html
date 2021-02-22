@@ -1,0 +1,162 @@
+
+{% block content %}
+
+<style>
+.content-section{
+    margin: 100px;
+    margin-top: 20px;
+}
+
+.button{
+  background-color: #ce180b; /* Green */
+  border: none;
+  border-radius: 50px;
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 100%;
+  margin-top: -30px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1:hover {
+  background-color: white;
+  color:#ce180b;
+  border: 1px solid #ce180b;
+}
+
+*
+{
+  box-sizing: border-box;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+    </style>
+    </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <body>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+    
+    <div class="content-section" id="nav">
+        
+        <h3>{{title}} <button onclick="goBack()" id="btn_cancel" class="button button1 "><i class="fas fa-times"></i></button>
+            <script>
+              function goBack() {
+              window.history.back();
+              }
+            </script>
+            </h3> 
+
+<div class="content-section">
+      <h3> {{title}} 
+          <button onclick="goBack()" id="btn_cancel" class="btn btn-danger " >Cancel</button>
+            <script>
+              function goBack() {
+              window.history.back();
+              }
+            </script>
+            </h3> 
+          
+          <br></br>
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">General Information</legend>
+            <div class="form-group">
+                {{ form.eventTitle.label(class="form-control-label") }}
+                {% if form.eventTitle.errors %}
+                    {{ form.eventTitle(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.eventTitle.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.eventTitle(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <div class='input-group date' id='datepicker1'>
+              {{form.startDate.label(class="form-control-label")}}
+              {{form.startDate(class='startDate')}}
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+            <div class='input-group date' id='datepicker2'>
+              {{form.endDate.label(class="form-control-label")}}
+              {{form.endDate(class='endDate')}}
+                      <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                      </span>
+              </div>
+            </div>
+          <div class="form-group">
+            {{ form.guest.label(class="form-control-label") }}
+            {% if form.guest.errors %}
+                {{ form.guest(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.guest.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.guest(class="form-control form-control-lg") }}
+            {% endif %}
+          </div>
+          
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+        </div>
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+	<script >
+	    $(function () {
+	        $('#datepicker1').datepicker({
+	          format: "yyyy-mm-dd",
+	          autoclose: true,
+	          todayHighlight: true,
+		        showOtherMonths: true,
+		        selectOtherMonths: true,
+		        autoclose: true,
+		        changeMonth: true,
+		        changeYear: true,
+		        orientation: "button"
+	        });
+      });
+      
+      $(function () {
+	        $('#datepicker2').datepicker({
+	          format: "yyyy-mm-dd",
+	          autoclose: true,
+	          todayHighlight: true,
+		        showOtherMonths: true,
+		        selectOtherMonths: true,
+		        autoclose: true,
+		        changeMonth: true,
+		        changeYear: true,
+		        orientation: "button"
+	        });
+	    });
+	</script>
+
+</body>
+      {% endblock content %}
